@@ -53,4 +53,20 @@ describe 'Module#include_module_functions' do
     expect(Test5).to respond_to(:sin)
     expect(Test5).to be_private_method_defined(:sin)
   end
+
+  describe 'Module#alias_module_function' do
+    it 'is a private method' do
+      expect(Module).to be_private_method_defined(:alias_module_function)
+    end
+
+    it 'copies module function' do
+      module Test6
+        def foo; end
+        module_function :foo
+        alias_module_function :bar, :foo
+      end
+      expect(Test6).to respond_to(:bar)
+      expect(Test6).to be_private_method_defined(:bar)
+    end
+  end
 end
