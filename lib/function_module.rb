@@ -2,6 +2,8 @@ require "function_module/version"
 
 class Module # :nodoc:
 
+  # lists all module functions.
+  # @return [Array] array of symbols for defined module functions.
   def module_functions
     original_private_methods = private_instance_methods
     original_private_methods -= Module.new.private_instance_methods
@@ -11,6 +13,9 @@ class Module # :nodoc:
 
   private
 
+  # include another Module & define public singleton methods
+  # (makes parameter module's module functions to self's module functions)
+  # @param [Module] mod including module
   def include_module_functions(mod)
     include mod
     extend mod

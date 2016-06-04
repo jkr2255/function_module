@@ -1,8 +1,9 @@
 # FunctionModule
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/function_module`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Build Status](https://travis-ci.org/jkr2255/function_module.svg?branch=master)](https://travis-ci.org/jkr2255/function_module)
 
-TODO: Delete this and the text above, and describe your gem
+Ruby's module functions are really a combination of private method and public singleton method.
+This gem offers some utility methods for manipulating module functions.
 
 ## Installation
 
@@ -22,7 +23,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### `Module#module_functions` (public)
+Returns `Array` of `Symbol` with names of module functions
+(both private instance method and public singleton method are defined).
+
+Note:
+
+* It doesn't check method definition; even if private instance method and public singleton method are different, it is counted as module function.
+* methods in `Module` itself are excluded (`Module.new.module_functions` return empty `Aryay`)
+
+### `Module#include_module_functions` (private)
+Using `include_module_functions another_mod` in some module,
+
+* include `another_mod` as usual.
+* extend `another_mod` and make module functions public (usable for singleton methods)
 
 ## Development
 
@@ -32,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/function_module.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jkr2255/function_module.
 
 
 ## License
