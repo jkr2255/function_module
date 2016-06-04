@@ -32,11 +32,14 @@ Note:
 * It doesn't check method definition; even if private instance method and public singleton method are different, it is counted as module function.
 * methods in `Module` itself are excluded (`Module.new.module_functions` return empty `Aryay`)
 
-### `Module#include_module_functions` (private)
+### `Module#include_module_functions(mod)` (private)
 Using `include_module_functions another_mod` in some module,
 
 * include `another_mod` as usual.
 * extend `another_mod` and make module functions public (usable for singleton methods)
+
+### `Module#alias_module_function(new_name, old_name)` (private)
+Make alias of module functions. In `alias`/`alias_method`, only instance method is aliased.
 
 ## Development
 
